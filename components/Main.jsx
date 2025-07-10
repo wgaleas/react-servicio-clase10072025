@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { getPersonajes } from "../lib/rickyMortin";
 import { CharacterCard } from "./CharacterCard";
-import { ScrollView } from "react-native-web";
+import { ActivityIndicator, FlatList, ScrollView } from "react-native-web";
 
 export function Main(){
 
@@ -17,17 +17,25 @@ export function Main(){
 
 
     return(
-        <ScrollView>
-        { personajes.map((character) => (
-                
-                <CharacterCard character= {character}
-                key={character.id}
-                />
-                
-        
-              ))}
+        <>
+        {personajes.length === 0 ? (
+            <ActivityIndicator size={"large"}/>
+        ):(
+            <FlatList
+                data={personajes}
+                keyExtractor={(item)=> item.id.toString()}
+                renderItem={
+                    ({item,index})=>(
+                        <CharacterCard character={item} index={index}/>
+                    )
+                }
+        />
 
-        </ScrollView>
+       
+
+        
     )
 }
-
+</>
+    )
+}
