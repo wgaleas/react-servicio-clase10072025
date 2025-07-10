@@ -5,6 +5,7 @@ import { getPersonajes } from './lib/rickyMortin';
 import { SafeAreaView } from 'react-native-web';
 import Logo from './components/Logo';
 import { CharacterCard } from './components/CharacterCard';
+import { Main } from './components/Main';
 
 
 
@@ -21,19 +22,11 @@ useEffect(()=>{
 
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <StatusBar style='light' />
       <Logo style={styles.logo}/>
-      <ScrollView>
-      {personajes.map((character) => (
-        
-        <CharacterCard character= {character}/>
-        
-
-      ))}
-      
-      </ScrollView>
-    </SafeAreaView>
+      <Main/>
+    </View>
     
   );
 }
